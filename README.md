@@ -1,6 +1,6 @@
 # Smart Computer Technology - Spring Boot
 
-###Required:
+### Required:
 1. Java  8
 2. Maven 3.5.2
 
