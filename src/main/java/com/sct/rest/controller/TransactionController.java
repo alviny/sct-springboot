@@ -19,7 +19,7 @@ public class TransactionController {
 	@Autowired
 	PurchasedItemDAO dao;
 	
-	@RequestMapping(value="items", method=RequestMethod.GET)
+	@RequestMapping(value="purchased/items", method=RequestMethod.GET)
 	@ResponseBody
 	public List<PurchasedItem> getItems() {
 	    return dao.getItems();
