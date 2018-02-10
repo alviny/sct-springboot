@@ -36,4 +36,11 @@ public class ItemDAO {
 	public void saveItem(Item item) throws SQLException{
 		jdbcTemplate.update("INSERT INTO ITEM(SUMMARY,DESCRIPTION,PRICE) VALUES(?,?,?)",item.getSummary(),item.getDescription(),item.getPrice());
 	}
+	public void updateItem(Long id, Item item) throws SQLException{
+		jdbcTemplate.update("UPDATE ITEM set summary=?,description=?,price=? WHERE id=?",item.getSummary(),item.getDescription(),item.getPrice(), id);
+	}
+	public void deleteItem(Long id) throws SQLException{
+		jdbcTemplate.update("DELETE FROM ITEM WHERE id=?", id);		
+	} 
+	
 }
