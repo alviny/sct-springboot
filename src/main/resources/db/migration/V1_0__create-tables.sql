@@ -30,24 +30,24 @@ create table item_feature (
 	PRIMARY KEY ( feature_id, item_id )
 );
 create table customer (
-	customer_id INT NOT NULL auto_increment,
+	id INT NOT NULL auto_increment,
     first_name VARCHAR(255) NOT NULL,
     last_name  VARCHAR(255) NOT NULL,
-    PRIMARY KEY(customer_id)
+    PRIMARY KEY(id)
 );
 create table item_order (
 	order_id INT NOT NULL auto_increment,
     customer_id INT NOT NULL,
     PRIMARY KEY(order_id),
     FOREIGN KEY(customer_id)
-      REFERENCES customer(customer_id)
+      REFERENCES customer(id)
 );
 create table customer_order (
 	customer_id INT NOT NULL,
     order_id INT NOT NULL,
     PRIMARY KEY(customer_id,order_id),
     FOREIGN KEY(customer_id)
-		REFERENCES customer(customer_id),
+		REFERENCES customer(id),
 	FOREIGN KEY(order_id)
 		REFERENCES item_order(order_id)
 );
