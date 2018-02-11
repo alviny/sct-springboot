@@ -1,14 +1,14 @@
 package com.sct.rest.vo;
 
 public class Customer {
-	private Long customerId;
+	private Long id;
 	private String firstName;
 	private String lastName;
-	public Long getCustomerId() {
-		return customerId;
+	public Long getId() {
+		return id;
 	}
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getFirstName() {
 		return firstName;
