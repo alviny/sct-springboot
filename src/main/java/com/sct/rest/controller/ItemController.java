@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -26,6 +27,13 @@ import com.sct.rest.vo.Item;
 @CrossOrigin()
 public class ItemController {
 	private static final Logger logger = Logger.getLogger(ItemController.class);
+	
+	@Value("${db.url}")
+	private String dbUrl;
+	@Value("${db.username}")
+	private String dbUsername;
+	@Value("${db.password}")
+	private String dbPassword;	
 	@Autowired
 	ItemDAO dao;
     @ControllerAdvice
@@ -38,6 +46,7 @@ public class ItemController {
 	@ResponseBody
 	public List<Item> getItems(){
 		logger.info("get items");
+		logger.info("db url:" + dbUrl + ",dbUsername:" + dbUsername + ",dbPassword:" + dbPassword);
 		return dao.getItems();
 	}
 	@RequestMapping(value="items/{id}", method=RequestMethod.GET)

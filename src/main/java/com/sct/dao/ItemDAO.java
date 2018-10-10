@@ -3,21 +3,27 @@ package com.sct.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.sct.rest.controller.ItemController;
 import com.sct.rest.vo.Item;
 
 @Repository
 public class ItemDAO {
+	private static final Logger logger = Logger.getLogger(ItemDAO.class);
+
     private JdbcTemplate jdbcTemplate;
 	public ItemDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	public List<Item> getItems(){
+		logger.info("get items");
+
 		RowMapper<Item> rm = new BeanPropertyRowMapper<Item>(Item.class);
 		List<Item> items = jdbcTemplate.query("select * from item", rm);
 		return items;

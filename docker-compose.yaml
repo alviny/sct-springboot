@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  sct-db:
+    image: mysql:5.6
+    environment:
+      MYSQL_DATABASE: sct-springboot
+      MYSQL_ROOT_PASSWORD: sct-springboot
+      MYSQL_USER: sct-springboot
+      MYSQL_PASSWORD: sct-springboot
+      MY_ROOT_HOST: '%'
+    volumes:
+      - /data/mysql
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+  sct-springboot-app:
+    image: sct-springboot
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - sct-db
+    ports:
+     - 8080:8080
+    volumes:
+     - /data/sct-springboot-app

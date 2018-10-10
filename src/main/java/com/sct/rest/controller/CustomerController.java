@@ -51,6 +51,11 @@ public class CustomerController {
 		}
 		return customer;
 	}
+	@RequestMapping(value="customer/{name}", method=RequestMethod.GET)
+	@ResponseBody	
+	public Customer getCustomerByName() {
+		return null;
+	}
 	@RequestMapping(value="customer", method=RequestMethod.PUT)
 	public ResponseEntity<String> newCustomer(@RequestBody Customer customer) {
 		ResponseEntity<String> resp;

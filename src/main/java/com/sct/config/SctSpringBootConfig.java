@@ -2,6 +2,7 @@ package com.sct.config;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,12 +13,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.sct.dao.PurchasedItemDAO;
+import com.sct.rest.controller.ItemController;
 
 @Configuration
 @PropertySource(
         value={"classpath:/database.properties"},
         ignoreResourceNotFound = true)
 public class SctSpringBootConfig {
+	private static final Logger logger = Logger.getLogger(SctSpringBootConfig.class);
 	
 	@Value("${db.classname}")
 	private String dbClassName;
@@ -30,6 +33,10 @@ public class SctSpringBootConfig {
 	
 	@Bean
 	public DataSource dataSource() {
+		logger.info("dbUrl:" + dbUrl);
+		logger.info("dbUsername:" + dbUsername);
+		logger.info("dbPassword:" + dbPassword);
+
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName(dbClassName);
 		ds.setUrl(dbUrl);

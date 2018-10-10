@@ -35,19 +35,22 @@ create table customer (
     last_name  VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
-create table item_order (
-	order_id INT NOT NULL auto_increment,
-    customer_id INT NOT NULL,
-    PRIMARY KEY(order_id),
-    FOREIGN KEY(customer_id)
-      REFERENCES customer(id)
-);
 create table customer_order (
-	customer_id INT NOT NULL,
-    order_id INT NOT NULL,
-    PRIMARY KEY(customer_id,order_id),
+	customer_order_id INT NOT NULL auto_increment,
+    customer_id INT NOT NULL,
+    order_date DATETIME NOT NULL,
+    total DOUBLE(7,3) NOT NULL, 
+    PRIMARY KEY(customer_order_id),
     FOREIGN KEY(customer_id)
-		REFERENCES customer(id),
-	FOREIGN KEY(order_id)
-		REFERENCES item_order(order_id)
+      REFERENCES customer(id)    
+);
+create table customer_order_item (
+	customer_order_id INT NOT NULL,
+    item_id INT NOT NULL,
+    quantity INT NOT NULL,
+    subtotal DOUBLE(7,3) NOT NULL,    
+    FOREIGN KEY(customer_order_id)
+      REFERENCES customer_order(customer_order_id),
+    FOREIGN KEY(item_id)
+      REFERENCES customer(id)    
 );
