@@ -3,14 +3,14 @@
 ### Required:
 1. Java  8
 2. Maven 3.5.2
-3. Docker support
+### Optional:
+3. Docker
 ### Description:
 This is a simple spring boot app that serves json for Angular consumer.
 
-##If you have docker
-Just run
-docker-compose up
+## Running the app using Docker
+1. docker-compose up
 
-##Web API 
+## Web API 
 
 http://localhost:8080/service/item
