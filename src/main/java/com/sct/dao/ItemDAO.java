@@ -15,7 +15,7 @@ import com.sct.rest.vo.Item;
 
 @Repository
 public class ItemDAO {
-	private static final Logger logger = Logger.getLogger(ItemDAO.class);
+	private static final Logger logger = Logger.getLogger(ItemDAO	.class);
 
     private JdbcTemplate jdbcTemplate;
 	public ItemDAO(JdbcTemplate jdbcTemplate) {
@@ -40,13 +40,13 @@ public class ItemDAO {
 		return item;
 	}
 	public void saveItem(Item item) throws SQLException{
-		jdbcTemplate.update("INSERT INTO ITEM(SUMMARY,DESCRIPTION,PRICE) VALUES(?,?,?)",item.getSummary(),item.getDescription(),item.getPrice());
+		jdbcTemplate.update("insert into item(summary,description,price) values(?,?,?)",item.getSummary(),item.getDescription(),item.getPrice());
 	}
 	public void updateItem(Long id, Item item) throws SQLException{
-		jdbcTemplate.update("UPDATE ITEM set summary=?,description=?,price=? WHERE id=?",item.getSummary(),item.getDescription(),item.getPrice(), id);
+		jdbcTemplate.update("update item set summary=?,description=?,price=? where id=?",item.getSummary(),item.getDescription(),item.getPrice(), id);
 	}
 	public void deleteItem(Long id) throws SQLException{
-		jdbcTemplate.update("DELETE FROM ITEM WHERE id=?", id);		
+		jdbcTemplate.update("delete from item where id=?", id);		
 	} 
 	
 }

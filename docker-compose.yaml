@@ -10,7 +10,7 @@ services:
       MYSQL_PASSWORD: sct-springboot
       MY_ROOT_HOST: '%'
     volumes:
-      - /data/mysql
+      - ./data:/var/lib/mysql
       - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
